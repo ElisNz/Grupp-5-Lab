@@ -6,7 +6,7 @@ router.get('/all', async (req, res) => {
   let data = await db.findAll()
 
   return res.json(data)
-})
+});
 
 //post
 router.post('/add', async (req, res) => {
@@ -30,7 +30,7 @@ router.post('/add', async (req, res) => {
     console.error(error)
     res.sendStatus(500)
   }
-})
+});
 
 //PUT
 router.put('/edit', async (req, res) => {
@@ -55,7 +55,7 @@ router.put('/edit', async (req, res) => {
     console.error(error)
     res.sendStatus(500)
   }
-})
+});
 
 router.delete('/remove', async (req, res) => {
   let _id = await req.body._id
@@ -72,8 +72,8 @@ router.delete('/remove', async (req, res) => {
 
     res.sendStatus(500)
   }
-})
+});
 
 
 
-module.exports= router
+module.exports = router;
