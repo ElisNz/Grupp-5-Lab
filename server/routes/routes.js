@@ -14,7 +14,7 @@ router.post('/add', async (req, res) => {
   let category = req.body.category;
   let description = req.body.description;
   let coordinates = req.body.coordinates;
-  
+
   try {
     let newDocument = {
       title: title,
