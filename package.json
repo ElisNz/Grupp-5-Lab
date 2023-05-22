@@ -1,0 +1,19 @@
+{
+  "name": "grupp-5-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dejv0ld/Grupp-5-Lab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dejv0ld/Grupp-5-Lab/issues"
+  },
+  "homepage": "https://github.com/dejv0ld/Grupp-5-Lab#readme"
+}
