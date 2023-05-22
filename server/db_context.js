@@ -1,43 +1,12 @@
-const pgp = require('pg-promise')(/* options */)
-const db = pgp('postgres://postgres:Temple1!=Temple2@localhost:5432/dvdrental')
+const uri = 'mongodb+srv://enz:MV6qCi73W7sQ7sTG@cluster0.ohmduf8.mongodb.net/?retryWrites=true&w=majority';
 
-async function selectAllCustomers() {
+async function updateCustomerEmailById(id, email) {}
 
-  let data = await db.many("SELECT * FROM customer")
+async function insertLocation() {}
 
-  return data;
-}
+async function deleteLocation() {}
 
-async function updateCustomerEmailById(id, email) {
-
-  await db.none(`UPDATE customer SET email = '${email}' WHERE customer_id = ${id}` );
-}
-
-async function selectAllCities() {
-
-  let data = await db.many("SELECT * FROM city")
-
-  return data;
-}
-
-async function insertCity(city, country_id) {
-
-  let result = await db.none(`INSERT INTO city (city, country_id) VALUES('${city}', ${country_id})`);
-
-  return result;
-}
-
-async function deleteCity(city, country_id) {
-
-  let result = await db.none(`DELETE FROM city WHERE city = '${city}'`);
-
-  return result;
-}
 
 module.exports = {
-    selectAllCustomers,
-    selectAllCities,
-    insertCity,
-    deleteCity,
-    updateCustomerEmailById
+  uri
 }
