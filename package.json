@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dejv0ld/Grupp-5-Lab/issues"
   },
-  "homepage": "https://github.com/dejv0ld/Grupp-5-Lab#readme"
+  "homepage": "https://github.com/dejv0ld/Grupp-5-Lab#readme",
+  "dependencies": {
+    "mongodb": "^5.5.0"
+  }
 }
