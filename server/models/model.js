@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const db = {};
 
 const locationSchema = new mongoose.Schema({
   title: String,
@@ -12,4 +13,7 @@ const locationSchema = new mongoose.Schema({
 
 const Locations = mongoose.model('Locations', locationSchema);
 
-module.exports = Locations
+db.mongoose = mongoose;
+db.model = { Locations };
+
+module.exports = db;
