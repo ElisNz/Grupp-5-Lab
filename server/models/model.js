@@ -1,3 +1,12 @@
+class Document {
+  constructor(title, category, description, coordinates) {
+    this.title = title;
+    this.category = category;
+    this.description = description;
+    this.coordinates = coordinates;
+  }
+}
+
 const mongoose = require('mongoose');
 const db = {};
 
@@ -16,4 +25,7 @@ const Locations = mongoose.model('Locations', locationSchema);
 db.mongoose = mongoose;
 db.model = { Locations };
 
-module.exports = db;
+module.exports = {
+  db,
+  Document
+}
