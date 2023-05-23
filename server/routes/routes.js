@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const Document = require('./model');
 
 //get all
 router.get('/all', async (req, res) => {
@@ -16,12 +17,7 @@ router.post('/add', async (req, res) => {
   let coordinates = req.body.coordinates
 
   try {
-    let newDocument = {
-      title: title,
-      category: category,
-      description: description,
-      coordinates: coordinates
-    }
+    let newDocument = new Document(title, category, description, coordinates);
 
     console.log(await db.insert(newDocument))
 
@@ -41,12 +37,7 @@ router.put('/edit', async (req, res) => {
   let coordinates = req.body.coordinates
 
   try {
-    let updateObj = {
-      title: title,
-      category: category,
-      description: description,
-      coordinates: coordinates
-    }
+    let updateObj = new Document(title, category, description, coordinates);
 
     console.log(await db.update(_id, updateObj))
 
