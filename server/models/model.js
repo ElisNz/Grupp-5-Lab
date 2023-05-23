@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
-const db = {};
+const mongoose = require('mongoose')
+const db = {}
 
 const locationSchema = new mongoose.Schema({
-  title: String,
-  category: String,
-  description: String,
-  coordinates: {
-    latitude: Number,
-    longitude: Number
-  }
-});
+    title: String,
+    category: String,
+    description: String,
+    coordinates: {
+        latitude: Number,
+        longitude: Number
+    }
+})
 
-const Locations = mongoose.model('Locations', locationSchema);
+const Location = mongoose.model('Location', locationSchema)
 
-db.mongoose = mongoose;
-db.model = { Locations };
+db.mongoose = mongoose
+db.model = { Location }
 
-module.exports = db;
+module.exports = db
