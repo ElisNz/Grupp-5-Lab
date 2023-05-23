@@ -1,6 +1,13 @@
-module.exports = class customer {
-  constructor(firstName, email) {
-    this.firstName = firstName;
-    this.email = email;
+class Document {
+  constructor(title, category, description, coordinates) {
+    this.title = title;
+    this.category = category;
+    this.description = description;
+    this.coordinates = coordinates;
   }
+}
+
+
+module.exports = {
+  Document
 }
