@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const db = {};
 
+// DTO
 class Document {
   constructor(title, category, description, coordinates) {
     this.title = title;
@@ -8,24 +9,34 @@ class Document {
     this.description = description;
     this.coordinates = coordinates;
   }
-}
+};
 
+// DB
 const locationSchema = new mongoose.Schema({
     title: String,
-    category: String,
+    category: {
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Category'
+    },
     description: String,
     coordinates: {
         latitude: Number,
         longitude: Number
     }
-})
+});
 
-const Location = mongoose.model('Location', locationSchema)
+const categorySchema = new mongoose.Schema({
+  name: String,
+  description: String
+});
 
-db.mongoose = mongoose
-db.model = { Location }
+const Location = mongoose.model('Location', locationSchema);
+const Category = mongoose.model('Category', categorySchema);
+
+db.mongoose = mongoose;
+db.model = { Location, Category };
 
 module.exports = {
   db,
   Document
-}
+};
