@@ -1,5 +1,14 @@
-const mongoose = require('mongoose')
-const db = {}
+const mongoose = require('mongoose');
+const db = {};
+
+class Document {
+  constructor(title, category, description, coordinates) {
+    this.title = title;
+    this.category = category;
+    this.description = description;
+    this.coordinates = coordinates;
+  }
+}
 
 const locationSchema = new mongoose.Schema({
     title: String,
@@ -16,4 +25,7 @@ const Location = mongoose.model('Location', locationSchema)
 db.mongoose = mongoose
 db.model = { Location }
 
-module.exports = db
+module.exports = {
+  db,
+  Document
+}
