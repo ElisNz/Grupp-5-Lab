@@ -13,15 +13,27 @@ class Document {
 
 // DB
 const locationSchema = new mongoose.Schema({
-    title: String,
+    title: {
+      type: String,
+      default: 'okänd'
+    },
     category: {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Category'
     },
-    description: String,
+    description: {
+      type: String,
+      default: 'no description'
+    },
     coordinates: {
-        latitude: Number,
-        longitude: Number
+        latitude: {
+          type: Number,
+          default: '0.0'
+        },
+        longitude: {
+          type: Number,
+          default: '0.0'
+        },
     }
 });
 

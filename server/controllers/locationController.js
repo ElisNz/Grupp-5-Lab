@@ -5,9 +5,15 @@ async function getAll(req, res) {
   let data = await locationFunctions.getAll()
   return res.json(data)
 }
-
-async function addOne(req, res) {}
-
+async function addOne(req, res) {
+    try {
+        let addedObject = await locationFunctions.insertLocation(req.body)
+      } catch (err) {
+        res.status(err)
+      } finally {
+        res.status(200).send({ message: `Saved ${req.body}` })
+      }
+}
 async function addMany(req, res) {
   try {
     let addedObjects = await locationFunctions.insertMockLocation()
@@ -22,33 +28,29 @@ async function addMany(req, res) {
 async function updateOne(req, res) {
     const { id } = req.params
     const updatedData = req.body
-
     try {
         const updatedLocation = await locationFunctions.updateMockLocation(
             id,
             updatedData
         )
-        res.json(updatedLocation)
+        res.status(200).send(updatedLocation)
     } catch (error) {
         console.error('Error updating location:', error)
-        res.status(500).json({ error: 'Internal server error' })
+        res.send(error)
     }
 }
-
-
 async function removeOne(req, res) {
   try {
     const { id } = req.body
     await locationFunctions.removeOne(id)
-    return res
-      .status(200)
-      .json({ message: 'Successfully removed the location.' })
+    res.status(200).send({ message: 'Successfully removed the location.' })
   } catch (err) {
-    return res.status(500).json({ message: err.message })
+    res.send({ message: err.message })
   }
 }
 
 module.exports = {
+  addOne,
   addMany,
   getAll,
   removeOne,

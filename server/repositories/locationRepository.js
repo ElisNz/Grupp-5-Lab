@@ -1,8 +1,11 @@
-const { Locations, db } = require('../models/model')
+const { db } = require('../models/model')
 const {
     insertManyLocations,
+    insertOneLocation,
     searchLocation,
-    getAllLocations
+    getAllLocations,
+    updateLocation,
+    removeLocation
 } = require('../db_context.js')
 const ObjectID = db.mongoose.Types.ObjectId
 
@@ -62,27 +65,26 @@ async function insertMockLocation() {
     ]
     return await insertManyLocations(data)
 }
+async function insertLocation(location) {
+    const locationModel = new db.model.Location(location)
+    return await insertManyLocations(locationModel)
+}
 async function getAll() {
     return getAllLocations()
 }
-// update functionalty
 async function updateMockLocation(locationId, updatedData) {
-    try {
-        return await Locations.findByIdAndUpdate(locationId, updatedData, {
-            new: true
-        })
-    } catch (error) {
-        console.error('Error updating location:', error)
-        throw error
+    if(locationId === null || updatedData === null) {
+        throw 'arguments missing'
     }
+    updateLocation(locationId, updatedData)
 }
-
 async function removeOne(id) {
-  return await Locations.findByIdAndRemove(id);
+  return await removeLocation(id);
 }
 
 module.exports = {
     insertMockLocation,
+    insertLocation,
     getAll,
     updateMockLocation,
     removeOne
