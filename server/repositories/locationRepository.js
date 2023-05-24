@@ -56,13 +56,18 @@ async function insertMockLocation() {
             }
         }
     ];
-    return await insertManyLocations(data);  
+    return await insertManyLocations(data);
 }
 async function getAll() {
     return getAllLocations();
 }
 
+async function removeOne(id) {
+  return await Locations.findByIdAndRemove(id);
+}
+
 module.exports = {
     insertMockLocation,
-    getAll
+    getAll,
+    removeOne
 };
