@@ -1,9 +1,13 @@
-const { Locations, db }= require('../models/model');
-const { insertManyLocations, searchLocation, getAllLocations } = require('../db_context.js');
-const ObjectID = db.mongoose.Types.ObjectId;
+const { Locations, db } = require('../models/model')
+const {
+    insertManyLocations,
+    searchLocation,
+    getAllLocations
+} = require('../db_context.js')
+const ObjectID = db.mongoose.Types.ObjectId
 
 async function insertMockLocation() {
-    const park = new ObjectID('646d2895bcbca72e55be7afd');
+    const park = new ObjectID('646d2895bcbca72e55be7afd')
     const data = [
         {
             title: 'VITABERGSPARKEN',
@@ -55,21 +59,23 @@ async function insertMockLocation() {
                 longitude: 18.02083325
             }
         }
-    ];
-    return await insertManyLocations(data);
+    ]
+    return await insertManyLocations(data)
 }
 async function getAll() {
-    return getAllLocations();
+    return getAllLocations()
 }
 // update functionalty
 async function updateMockLocation(locationId, updatedData) {
     try {
-      return await Locations.findByIdAndUpdate(locationId, updatedData, { new: true });
+        return await Locations.findByIdAndUpdate(locationId, updatedData, {
+            new: true
+        })
     } catch (error) {
-      console.error('Error updating location:', error);
-      throw error;
+        console.error('Error updating location:', error)
+        throw error
     }
-  }
+}
 
 async function removeOne(id) {
   return await Locations.findByIdAndRemove(id);
