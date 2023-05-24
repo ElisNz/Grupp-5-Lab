@@ -56,13 +56,23 @@ async function insertMockLocation() {
             }
         }
     ];
-    return await insertManyLocations(data);  
+    return await insertManyLocations(data);
 }
 async function getAll() {
     return getAllLocations();
 }
+// update functionalty
+async function updateMockLocation(locationId, updatedData) {
+    try {
+      return await Locations.findByIdAndUpdate(locationId, updatedData, { new: true });
+    } catch (error) {
+      console.error('Error updating location:', error);
+      throw error;
+    }
+  }
 
 module.exports = {
     insertMockLocation,
-    getAll
+    getAll,
+    updateMockLocation
 };
