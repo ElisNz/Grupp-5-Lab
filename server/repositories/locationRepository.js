@@ -1,9 +1,8 @@
 const { db } = require('../models/model')
 const {
     insertManyLocations,
-    insertOneLocation,
-    searchLocation,
     getAllLocations,
+    getOneLocation,
     updateLocation,
     removeLocation
 } = require('../db_context.js')
@@ -72,6 +71,9 @@ async function insertLocation(location) {
 async function getAll() {
     return getAllLocations()
 }
+async function getOne(query) {
+    return getOneLocation(query)
+}
 async function updateMockLocation(locationId, updatedData) {
     if(locationId === null || updatedData === null) {
         throw 'arguments missing'
@@ -86,6 +88,7 @@ module.exports = {
     insertMockLocation,
     insertLocation,
     getAll,
+    getOne,
     updateMockLocation,
     removeOne
 };

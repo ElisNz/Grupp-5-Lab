@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 // Get all
 router.get('/all', getAll)
 // Get one
-/* router.get('/search/:query', getOne) */
+router.get('/search/:query', getOne)
 // Add locations
 router.post('/add', addOne)
 router.post('/add-mock', addMany)

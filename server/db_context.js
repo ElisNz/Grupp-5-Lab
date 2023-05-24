@@ -5,6 +5,13 @@ const { Location, Category } = db.model
 async function getAllLocations() {
     return await Location.find()
 }
+async function getOneLocation(query) {
+  try {
+    return await Location.find({ title: query })
+  } catch(err) {
+    throw err;
+  }
+}
 async function insertManyLocations(locations) {
     Location.insertMany(locations, (err, docs) => {
         if (err) {
@@ -40,6 +47,7 @@ module.exports = {
     db,
     insertManyLocations,
     getAllLocations,
+    getOneLocation,
     searchLocation,
     updateLocation,
     removeLocation

@@ -5,6 +5,10 @@ async function getAll(req, res) {
   let data = await locationFunctions.getAll()
   return res.json(data)
 }
+async function getOne(req, res) {
+    let data = await locationFunctions.getOne(req.params.query)
+    return res.json(data)
+  }
 async function addOne(req, res) {
     try {
         let addedObject = await locationFunctions.insertLocation(req.body)
@@ -53,6 +57,7 @@ module.exports = {
   addOne,
   addMany,
   getAll,
+  getOne,
   removeOne,
   updateOne
 }
