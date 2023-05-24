@@ -1,9 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const Document = require('./model');
+const {} = require('../controllers/locationController');
 
 //get all
 router.get('/all', async (req, res) => {
+  
+});
+
+//get one
+router.get('/location/:query', async (req, res) => {
   let data = await db.findAll()
 
   return res.json(data)

@@ -8,7 +8,14 @@ async function get(req, res) {
     return res.json(data);
 }
 
-async function add(req, res) {
+async function addOne(req, res) {
+
+    let data = await addCity(req.body.postedData, 90);
+
+    return res.json({ message: "Saved" });
+}
+
+async function addMany(req, res) {
 
     let data = await addCity(req.body.postedData, 90);
 
