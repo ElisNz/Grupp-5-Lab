@@ -24,6 +24,10 @@ async function searchLocation(query) {
       }
     });
   };
+  //update
+  async function updateLocation(id, updatedData) {
+    return await Location.findByIdAndUpdate(id, updatedData, { new: true });
+  };
 
 const Functions = {
   async searchLocation(query) {
@@ -37,7 +41,11 @@ const Functions = {
     },
   async deleteLocation() {
 
-    }
+    },
+    //
+    async updateMockLocation(id, updatedData) {
+        return await updateLocation(id, updatedData);
+      }
 };
 
 module.exports = {

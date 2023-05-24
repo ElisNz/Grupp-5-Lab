@@ -61,6 +61,15 @@ async function insertMockLocation() {
 async function getAll() {
     return getAllLocations();
 }
+// update functionalty
+async function updateMockLocation(locationId, updatedData) {
+    try {
+      return await Locations.findByIdAndUpdate(locationId, updatedData, { new: true });
+    } catch (error) {
+      console.error('Error updating location:', error);
+      throw error;
+    }
+  }
 
 async function removeOne(id) {
   return await Locations.findByIdAndRemove(id);
@@ -69,5 +78,6 @@ async function removeOne(id) {
 module.exports = {
     insertMockLocation,
     getAll,
+    updateMockLocation,
     removeOne
 };
