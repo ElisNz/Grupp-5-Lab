@@ -1,13 +1,11 @@
 const express = require('express')
 const router = express.Router()
 /* const { Document } = require('../models/model'); */
-const { addMany } = require('../controllers/locationController');
+const { addMany, getAll } = require('../controllers/locationController');
 
 router.get('/', (req, res) => {res.send('Welcome!')});
 //get all
-router.get('/all', async (req, res) => {
-  
-});
+router.get('/all', getAll);
 
 //get one
 router.get('/location/:query', async (req, res) => {

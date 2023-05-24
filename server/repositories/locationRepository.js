@@ -1,5 +1,5 @@
 const { Locations, db }= require('../models/model');
-const { Functions, insertManyLocations } = require('../db_context.js');
+const { insertManyLocations, searchLocation, getAllLocations } = require('../db_context.js');
 const ObjectID = db.mongoose.Types.ObjectId;
 
 async function insertMockLocation() {
@@ -56,13 +56,13 @@ async function insertMockLocation() {
             }
         }
     ];
-    await insertManyLocations(data);  
+    return await insertManyLocations(data);  
 }
-async function getAllLocations() {
-    
+async function getAll() {
+    return getAllLocations();
 }
 
 module.exports = {
     insertMockLocation,
-    getAllLocations
+    getAll
 };
