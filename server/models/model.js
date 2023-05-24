@@ -27,7 +27,11 @@ const locationSchema = new mongoose.Schema({
 
 const categorySchema = new mongoose.Schema({
   name: String,
-  description: String
+  description: String,
+  places: [ {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Location'
+  } ]
 });
 
 const Location = mongoose.model('Location', locationSchema);

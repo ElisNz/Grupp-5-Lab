@@ -16,10 +16,13 @@ async function addOne(req, res) {
 }
 
 async function addMany(req, res) {
-
-    let data = await addCity(req.body.postedData, 90);
-
-    return res.json({ message: "Saved" });
+    try {
+        await locationFunctions.insertMockLocation();
+    } catch (err) {
+        res.status(err);
+    } finally {
+        res.status(200).send({ message: `Saved ${req.body}` });
+    }
 }
 
 async function remove(req, res) {
@@ -30,7 +33,5 @@ async function remove(req, res) {
 }
 
 module.exports = {
-    get,
-    add,
-    remove
+    addMany,
 }

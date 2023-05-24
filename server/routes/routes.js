@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const Document = require('./model');
-const {} = require('../controllers/locationController');
+/* const { Document } = require('../models/model'); */
+const { addMany } = require('../controllers/locationController');
 
+router.get('/', (req, res) => {res.send('Welcome!')});
 //get all
 router.get('/all', async (req, res) => {
   
@@ -16,11 +17,11 @@ router.get('/location/:query', async (req, res) => {
 });
 
 //post
-router.post('/add', async (req, res) => {
-  let title = req.body.title
-  let category = req.body.category
-  let description = req.body.description
-  let coordinates = req.body.coordinates
+/* router.post('/add', async (req, res) => {
+  let title = req.body.title;
+  let category = req.body.category;
+  let description = req.body.description;
+  let coordinates = req.body.coordinates;
 
   try {
     let newDocument = new Document(title, category, description, coordinates);
@@ -32,7 +33,8 @@ router.post('/add', async (req, res) => {
     console.error(error)
     res.sendStatus(500)
   }
-});
+}); */
+router.post('/add-mock', addMany);
 
 //PUT
 router.put('/edit', async (req, res) => {
@@ -68,4 +70,4 @@ router.delete('/remove', async (req, res) => {
   }
 });
 
-module.exports = router
+module.exports = router;
