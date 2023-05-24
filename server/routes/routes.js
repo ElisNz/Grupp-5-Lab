@@ -1,11 +1,7 @@
 const express = require('express')
 const router = express.Router()
 /* const { Document } = require('../models/model'); */
-const {
-    addMany,
-    getAll,
-    updateOne
-} = require('../controllers/locationController')
+const { addMany, getAll, updateOne, removeOne } = require('../controllers/locationController');
 
 router.get('/', (req, res) => {
     res.send('Welcome!')
@@ -56,8 +52,8 @@ router.put('/locations/:id', updateOne, async (req, res) => {
 router.delete('/remove', async (req, res) => {
     let _id = await req.body._id
 
-    try {
-        console.log(await db.deleteOne(_id))
+  try {
+    console.log(await db.removeOne(_id))
 
         res.sendStatus(200)
     } catch (error) {
