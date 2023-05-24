@@ -37,17 +37,7 @@ router.get('/location/:query', async (req, res) => {
 router.post('/add-mock', addMany)
 
 // Update a location(PUT)
-router.put('/locations/:id', updateOne, async (req, res) => {
-    try {
-        const { id } = req.params
-        const updatedData = req.body
-        const updatedLocation = await updateOne(id, updatedData)
-        res.json(updatedLocation)
-    } catch (error) {
-        console.error('Error on the update location:', error)
-        res.status(500).json({ error: 'server error' })
-    }
-})
+router.put('/locations/:id', updateOne)
 
 router.delete('/remove', async (req, res) => {
     let _id = await req.body._id
