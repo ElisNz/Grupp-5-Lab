@@ -3,11 +3,11 @@ const { db } = require('./models/model')
 const { Location, Category } = db.model
 
 async function getAllLocations() {
-    return await Location.find()
+    return await Location.find().populate('category')
 }
 async function getOneLocation(query) {
   try {
-    return await Location.find({ title: query })
+    return await Location.find({ title: query }).populate('category')
   } catch(err) {
     throw err;
   }
