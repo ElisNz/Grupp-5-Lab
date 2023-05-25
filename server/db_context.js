@@ -1,43 +1,54 @@
-const pgp = require('pg-promise')(/* options */)
-const db = pgp('postgres://postgres:Temple1!=Temple2@localhost:5432/dvdrental')
+const uri = 'mongodb+srv://enz:MV6qCi73W7sQ7sTG@cluster0.ohmduf8.mongodb.net/master?retryWrites=true&w=majority'
+const { db } = require('./models/model')
+const { Location, Category } = db.model
 
-async function selectAllCustomers() {
-
-  let data = await db.many("SELECT * FROM customer")
-
-  return data;
+async function getAllLocations() {
+    return await Location.find().populate('category')
 }
-
-async function updateCustomerEmailById(id, email) {
-
-  await db.none(`UPDATE customer SET email = '${email}' WHERE customer_id = ${id}` );
+async function getOneLocation(query) {
+  try {
+    return await Location.find({ title: query }).populate('category')
+  } catch(err) {
+    throw err;
+  }
 }
-
-async function selectAllCities() {
-
-  let data = await db.many("SELECT * FROM city")
-
-  return data;
+async function insertManyLocations(locations) {
+    Location.insertMany(locations, (err, docs) => {
+        if (err) {
+            console.log(docs)
+            throw err
+        }
+    })
+    return await Location.find().populate('category')
 }
-
-async function insertCity(city, country_id) {
-
-  let result = await db.none(`INSERT INTO city (city, country_id) VALUES('${city}', ${country_id})`);
-
-  return result;
+async function searchLocation(query) {
+    return await Location.find({ title: query }, (err, docs) => {
+        if (err) {
+            console.log(docs)
+            throw err
+        }
+    })
 }
-
-async function deleteCity(city, country_id) {
-
-  let result = await db.none(`DELETE FROM city WHERE city = '${city}'`);
-
-  return result;
+// Update one
+async function updateLocation(id, updatedData) {
+    return await Location.findByIdAndUpdate(id, updatedData, { new: true })
+}
+// Remove one
+async function removeLocation(id) {
+  try {
+    return await Location.findByIdAndRemove(id)
+  } catch(error) {
+    throw error;
+  }
 }
 
 module.exports = {
-    selectAllCustomers,
-    selectAllCities,
-    insertCity,
-    deleteCity,
-    updateCustomerEmailById
+    uri,
+    db,
+    insertManyLocations,
+    getAllLocations,
+    getOneLocation,
+    searchLocation,
+    updateLocation,
+    removeLocation
 }
