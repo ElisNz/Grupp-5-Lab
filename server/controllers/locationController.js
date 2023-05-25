@@ -1,4 +1,3 @@
-//const { getAllCities, addCity, removeCity } = require("../repositories/cityRepository" );
 const locationFunctions = require('../repositories/locationRepository')
 
 async function getAll(req, res) {
